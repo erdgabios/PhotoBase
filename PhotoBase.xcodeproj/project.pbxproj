@@ -8,22 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		06FBF0A71E222028008D04DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBF0A61E222028008D04DE /* AppDelegate.swift */; };
-		06FBF0A91E222028008D04DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBF0A81E222028008D04DE /* ViewController.swift */; };
 		06FBF0AC1E222028008D04DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06FBF0AA1E222028008D04DE /* Main.storyboard */; };
 		06FBF0AF1E222028008D04DE /* PhotoBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06FBF0AD1E222028008D04DE /* PhotoBase.xcdatamodeld */; };
 		06FBF0B11E222028008D04DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FBF0B01E222028008D04DE /* Assets.xcassets */; };
 		06FBF0B41E222028008D04DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06FBF0B21E222028008D04DE /* LaunchScreen.storyboard */; };
+		06FBF0BC1E2224FE008D04DE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBF0BB1E2224FE008D04DE /* TableViewController.swift */; };
+		06FBF0BE1E22252D008D04DE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBF0BD1E22252D008D04DE /* TableViewCell.swift */; };
+		06FBF0C51E222BB3008D04DE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FBF0C41E222BB3008D04DE /* CoreData.framework */; };
+		06FBF0C71E225AF1008D04DE /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FBF0C61E225AF1008D04DE /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06FBF0A31E222028008D04DE /* PhotoBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06FBF0A61E222028008D04DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		06FBF0A81E222028008D04DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		06FBF0AB1E222028008D04DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06FBF0AE1E222028008D04DE /* PhotoBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoBase.xcdatamodel; sourceTree = "<group>"; };
 		06FBF0B01E222028008D04DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06FBF0B31E222028008D04DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06FBF0B51E222028008D04DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06FBF0BB1E2224FE008D04DE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		06FBF0BD1E22252D008D04DE /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		06FBF0C41E222BB3008D04DE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		06FBF0C61E225AF1008D04DE /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06FBF0C51E222BB3008D04DE /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,7 @@
 			children = (
 				06FBF0A51E222028008D04DE /* PhotoBase */,
 				06FBF0A41E222028008D04DE /* Products */,
+				06FBF0C31E222BB3008D04DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,7 +65,9 @@
 			isa = PBXGroup;
 			children = (
 				06FBF0A61E222028008D04DE /* AppDelegate.swift */,
-				06FBF0A81E222028008D04DE /* ViewController.swift */,
+				06FBF0BB1E2224FE008D04DE /* TableViewController.swift */,
+				06FBF0BD1E22252D008D04DE /* TableViewCell.swift */,
+				06FBF0C61E225AF1008D04DE /* AddViewController.swift */,
 				06FBF0AA1E222028008D04DE /* Main.storyboard */,
 				06FBF0B01E222028008D04DE /* Assets.xcassets */,
 				06FBF0B21E222028008D04DE /* LaunchScreen.storyboard */,
@@ -65,6 +75,14 @@
 				06FBF0AD1E222028008D04DE /* PhotoBase.xcdatamodeld */,
 			);
 			path = PhotoBase;
+			sourceTree = "<group>";
+		};
+		06FBF0C31E222BB3008D04DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06FBF0C41E222BB3008D04DE /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +158,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06FBF0C71E225AF1008D04DE /* AddViewController.swift in Sources */,
 				06FBF0AF1E222028008D04DE /* PhotoBase.xcdatamodeld in Sources */,
-				06FBF0A91E222028008D04DE /* ViewController.swift in Sources */,
+				06FBF0BE1E22252D008D04DE /* TableViewCell.swift in Sources */,
+				06FBF0BC1E2224FE008D04DE /* TableViewController.swift in Sources */,
 				06FBF0A71E222028008D04DE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

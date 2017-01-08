@@ -7,17 +7,60 @@
 //
 
 import UIKit
+import CoreData
 
-class TableViewController: UITableViewController {
+
+class TableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    
+    let pc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var frc: NSFetchedResultsController = NSFetchedResultsController<NSFetchRequestResult>()
+    
+    func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
+        let sorter = NSSortDescriptor(key: "titletext", ascending: true)
+        fetchRequest.sortDescriptors = [sorter]
+        return fetchRequest
+    }
+    
+    func getFRC() -> NSFetchedResultsController<NSFetchRequestResult> {
+        
+        frc = NSFetchedResultsController(fetchRequest: fetchRequest(), managedObjectContext: pc, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return frc
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        frc = getFRC()
+        frc.delegate = self
+        
+        do {
+            try frc.performFetch()
+        } catch {
+            print(error)
+            return
+        }
+        self.tableView.reloadData()
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        frc = getFRC()
+        frc.delegate = self
+        
+        do {
+            try frc.performFetch()
+        } catch {
+            print(error)
+            return
+        }
+        self.tableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,24 +71,34 @@ class TableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        
+        let numberOfSection = frc.sections?.count
+        return numberOfSection!
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        let numberOfRows = frc.sections?[section].numberOfObjects
+        return numberOfRows!
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        
+        let item = frc.object(at: indexPath) as! Entity
+        
+        cell.cellTitle.text = item.titletext
+        cell.cellDescription.text = item.descriptiontext
+        
+        cell.cellImageView.image = UIImage(data: (item.image)! as Data)
 
-        // Configure the cell...
+        
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -55,17 +108,26 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        
+        let managedObject: NSManagedObject = frc.object(at: indexPath) as! NSManagedObject
+        pc.delete(managedObject)
+        
+        do {
+            try pc.save()
+        } catch {
+            print(error)
+            return
+        }
+        
     }
-    */
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        tableView.reloadData()
+    }
 
     /*
     // Override to support rearranging the table view.
@@ -82,14 +144,23 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "edit" {
+            
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+            let itemController :AddViewController = segue.destination as! AddViewController
+            let item: Entity = frc.object(at: indexPath!) as! Entity
+            itemController.item = item
+            
+            
+        }
     }
-    */
+    
 
 }
